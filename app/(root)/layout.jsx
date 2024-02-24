@@ -5,12 +5,23 @@ import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 
 const layout = ({ children }) => {
-    let appState = JSON.parse(window.localStorage.getItem("app")) || {
+    let appState = {
         lang: "english",
         darkMode: false,
     }
+    if (typeof window !== "undefined") {
+        appState = JSON.parse(localStorage.getItem("app")) || appState
+    }
     const [darkMode, setDarkMode] = useState(appState.darkMode)
     const [lang, setLang] = useState(appState.lang)
+    useEffect(() => {
+        const body = document.getElementById("body")
+        if (darkMode) {
+            body.classList.add("dark")
+        } else {
+            body.classList.remove("dark")
+        }
+    }, [darkMode])
 
     const syncLang = (lang) => {
         setLang(lang)
@@ -23,15 +34,6 @@ const layout = ({ children }) => {
         appState.darkMode = mode
         window.localStorage.setItem("app", JSON.stringify(appState))
     }
-
-    useEffect(() => {
-        const body = document.getElementById("body")
-        if (darkMode) {
-            body.classList.add("dark")
-        } else {
-            body.classList.remove("dark")
-        }
-    }, [darkMode])
 
     return (
         <div>
