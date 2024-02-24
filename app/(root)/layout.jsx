@@ -10,7 +10,7 @@ const layout = ({ children }) => {
         darkMode: false,
     }
     if (typeof window !== "undefined") {
-        appState = JSON.parse(localStorage.getItem("app")) || appState
+        appState = JSON.parse(window.localStorage.getItem("app")) || appState
     }
     const [darkMode, setDarkMode] = useState(appState.darkMode)
     const [lang, setLang] = useState(appState.lang)
