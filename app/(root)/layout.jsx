@@ -1,10 +1,11 @@
 "use client"
 import { useState, useEffect } from "react"
+import React from "react"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 
 const layout = ({ children }) => {
-    let appState = JSON.parse(localStorage.getItem("app")) || {
+    let appState = JSON.parse(window.localStorage.getItem("app")) || {
         lang: "english",
         darkMode: false,
     }
@@ -14,13 +15,13 @@ const layout = ({ children }) => {
     const syncLang = (lang) => {
         setLang(lang)
         appState.lang = lang
-        localStorage.setItem("app", JSON.stringify(appState))
+        window.localStorage.setItem("app", JSON.stringify(appState))
     }
 
     const syncDarkMode = (mode) => {
         setDarkMode(mode)
         appState.darkMode = mode
-        localStorage.setItem("app", JSON.stringify(appState))
+        window.localStorage.setItem("app", JSON.stringify(appState))
     }
 
     useEffect(() => {
