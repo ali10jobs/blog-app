@@ -2,19 +2,19 @@ import Image from "next/image"
 const people = [
     {
         id: 1,
-        name: "John Doe",
+        name: "Oliver Rodriguez",
         role: "Founder / CEO",
         imageUrl: "/people/person2.png",
     },
     {
         id: 2,
-        name: "Jane Doe",
+        name: "Emma Harrison",
         role: "CTO",
         imageUrl: "/people/person3.png",
     },
     {
         id: 3,
-        name: "Doe John",
+        name: "William Parker",
         role: "GM",
         imageUrl: "/people/person1.png",
     },

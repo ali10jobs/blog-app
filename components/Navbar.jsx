@@ -19,8 +19,8 @@ const navbarLinks = [
     },
     {
         id: 3,
-        name: "popular posts",
-        href: "#",
+        name: "posts",
+        href: "/posts",
         delay: 0.6,
     },
     {
@@ -69,7 +69,7 @@ const Navbar = ({ darkMode, setDarkMode, lang, setLang }) => {
                             <HiOutlineMoon className='text-2xl text-zinc-600 dark:text-zinc-500' />
                         )}
                     </button>
-                    <div className='flex items-center space-x-2 bg-zinc-50 dark:bg-zinc-900/50 sm:bg-none border dark:border-zinc-700 sm:border-none p-1 rounded-full'>
+                    <div className='flex items-center space-x-2 sm:space-x-0 bg-zinc-50 dark:bg-zinc-900/50 sm:bg-none border dark:border-zinc-700 sm:border-none p-1 rounded-full'>
                         <LangMenu lang={lang} setLang={setLang} />
                         <NavMenu navbarLinks={navbarLinks} />
                     </div>

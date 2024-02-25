@@ -1,0 +1,10 @@
+sports, football, premier league => /posts-images/1.jpg
+sports, football, saudi pro league => /posts-images/2.jpg
+sports, football, la liga => /posts-images/3.jpg
+sports, football, calcio Serie A => /posts-images/4.jpg
+sports, football, Bundesliga => /posts-images/5.jpg
+sports, football, Ligue 1 => /posts-images/6.jpg
+sports, tennis => /posts-images/7.jpg
+sports, basketball => /posts-images/8.jpg
+sports, UFC => /posts-images/9.jpg
+sports, formula 1 => /posts-images/10.jpg

@@ -11,8 +11,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang='en'>
-            <body id='body' className={`${inter.className} dark:bg-zinc-950`}>
+        <html lang='en' suppressHydrationWarning={true}>
+            <body
+                suppressHydrationWarning={true}
+                id='body'
+                className={`${inter.className} dark:bg-zinc-950`}
+            >
                 {children}
             </body>
             {/* <SpeedInsights /> */}

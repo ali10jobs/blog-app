@@ -25,7 +25,7 @@ const Search = () => {
                 {searchInputOpen ? (
                     <form className='w-full' action=''>
                         <input
-                            className='w-full py-2 bg-indigo-50 dark:text-white dark:bg-zinc-900 focus:outline-none'
+                            className='w-full py-2 bg-indigo-50 dark:text-white dark:bg-zinc-900 focus:outline-none focus:border-b-2 focus:border-indigo-200'
                             placeholder='Search'
                             type='text'
                             onChange={(e) => setSearchInputValue(e)}

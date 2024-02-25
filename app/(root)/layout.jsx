@@ -5,34 +5,44 @@ import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 
 const layout = ({ children }) => {
-    let appState = {
-        lang: "english",
-        darkMode: false,
-    }
-    if (typeof window !== "undefined") {
-        appState = JSON.parse(window.localStorage.getItem("app")) || appState
-    }
-    const [darkMode, setDarkMode] = useState(appState.darkMode)
-    const [lang, setLang] = useState(appState.lang)
+    let initialLang = "english"
+    let initialMode = false
+    const [darkMode, setDarkMode] = useState(initialLang)
+    const [lang, setLang] = useState(initialMode)
+
     useEffect(() => {
-        const body = document.getElementById("body")
-        if (darkMode) {
-            body.classList.add("dark")
-        } else {
-            body.classList.remove("dark")
+        async function syncStateFromStorage() {
+            if (typeof window !== "undefined" && window.localStorage) {
+                initialLang =
+                    JSON.parse(window.localStorage.getItem("app.lang")) ||
+                    initialLang
+                initialMode =
+                    JSON.parse(window.localStorage.getItem("app.mode")) ||
+                    initialMode
+            }
+            syncLang(initialLang)
+            syncDarkMode(initialMode)
         }
-    }, [darkMode])
+
+        syncStateFromStorage()
+    }, [])
+
+    const saveToLocalStorage = (key, value) => {
+        if (typeof window !== "undefined" && window.localStorage) {
+            window.localStorage.setItem(key, JSON.stringify(value))
+        }
+    }
 
     const syncLang = (lang) => {
         setLang(lang)
-        appState.lang = lang
-        window.localStorage.setItem("app", JSON.stringify(appState))
+        saveToLocalStorage("app.lang", lang)
     }
 
     const syncDarkMode = (mode) => {
+        let handlerName = mode ? "add" : "remove"
         setDarkMode(mode)
-        appState.darkMode = mode
-        window.localStorage.setItem("app", JSON.stringify(appState))
+        saveToLocalStorage("app.mode", mode)
+        document.body.classList[handlerName]("dark")
     }
 
     return (

@@ -24,7 +24,7 @@ const LangMenu = ({ lang, setLang }) => {
         <div className='relative'>
             <button
                 onClick={() => setLangMenuOpen(!langMenuOpen)}
-                className='p-[6px] rounded-full bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 border dark:border-zinc-700'
+                className='p-[6px] rounded-full bg-zinc-50 sm:bg-none dark:sm:bg-none dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 border dark:border-zinc-700'
             >
                 <HiOutlineGlobeAlt className='text-2xl text-zinc-600 dark:text-zinc-500' />
             </button>
