@@ -1,34 +1,73 @@
+"use client"
+import { useState, useEffect } from "react"
 import Search from "@/components/Search"
 import Hero from "@/components/Hero"
 import OurClients from "@/components/OurClients"
 import Statistics from "@/components/Statistics"
 import PopularPosts from "@/components/PopularPosts"
 import OurTeam from "@/components/OurTeam"
+import Posts from "@/components/Posts"
 import Faq from "@/components/Faq"
 const page = () => {
+    const [term, setTerm] = useState("")
+    const [items, setItems] = useState([])
+    const [filtered, setFiltered] = useState([])
+
+    const fetchPosts = async () => {
+        const res = await fetch("/feeds.json")
+        const data = await res.json()
+        setItems(data)
+        setFiltered(data)
+    }
+
+    useEffect(() => {
+        fetchPosts()
+    }, [])
+
+    useEffect(() => {
+        setFiltered(
+            items.filter(
+                (item) =>
+                    item.title.includes(term) || item.content.includes(term)
+            )
+        )
+    }, [term])
+
     return (
         <div>
             <section>
-                <Search />
+                <Search term={term} setTerm={setTerm} />
             </section>
-            <section>
-                <Hero />
-            </section>
-            <section className='mt-20'>
-                <OurClients />
-            </section>
-            <section className='mt-20'>
-                <Statistics />
-            </section>
-            <section className='mt-20'>
-                <PopularPosts />
-            </section>
-            <section className='mt-20'>
-                <OurTeam />
-            </section>
-            {/* <section className='mt-20'>
-                <Faq />
-            </section> */}
+            {term ? (
+                <>
+                    {filtered.length > 0 ? (
+                        <Posts items={filtered} />
+                    ) : (
+                        <div>No results</div>
+                    )}
+                </>
+            ) : (
+                <>
+                    <section>
+                        <Hero />
+                    </section>
+                    <section className='mt-20'>
+                        <OurClients />
+                    </section>
+                    <section className='mt-20'>
+                        <Statistics />
+                    </section>
+                    <section className='mt-20'>
+                        <PopularPosts />
+                    </section>
+                    <section className='mt-20'>
+                        <OurTeam />
+                    </section>
+                    {/* <section className='mt-20'>
+                        <Faq />
+                    </section> */}
+                </>
+            )}
         </div>
     )
 }

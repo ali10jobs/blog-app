@@ -3,38 +3,23 @@ import { useState } from "react"
 import { HiOutlineSearch } from "react-icons/hi"
 import { CgClose } from "react-icons/cg"
 
-const Search = () => {
+const Search = ({ term, setTerm }) => {
     const [searchInputOpen, setSearchInputOpen] = useState(false)
-    const [searchInputValue, setSearchInputValue] = useState("")
 
-    const setSearchValue = (e) => {
-        setSearchInputValue(e.target.value)
-    }
-    const handleSearch = () => {
-        if (!searchInputOpen) {
-            setSearchInputOpen(!searchInputOpen)
-        } else {
-            // impelement the search feature
-            setSearchInputOpen(!searchInputOpen)
-            setSearchInputValue("")
-        }
-    }
     return (
-        <div className='w-full h-16 bg-indigo-50 dark:bg-zinc-900'>
+        <div className='w-full h-16 bg-indigo-50 border-b border-zinc-200 dark:border-none dark:bg-zinc-900'>
             <div className='mx-auto px-4 sm:px-8 flex justify-end items-center h-full max-w-screen-2xl'>
                 {searchInputOpen ? (
-                    <form className='w-full' action=''>
-                        <input
-                            className='w-full py-2 bg-indigo-50 dark:text-white dark:bg-zinc-900 focus:outline-none focus:border-b-2 focus:border-indigo-200'
-                            placeholder='Search'
-                            type='text'
-                            onChange={(e) => setSearchInputValue(e)}
-                        />
-                    </form>
+                    <input
+                        className='w-full py-2 bg-indigo-50 dark:text-white dark:bg-zinc-900 focus:outline-none focus:border-b-2 focus:border-indigo-200'
+                        placeholder='Search'
+                        type='text'
+                        onChange={(e) => setTerm(e.target.value)}
+                    />
                 ) : (
                     ""
                 )}
-                {searchInputOpen && searchInputValue === "" ? (
+                {searchInputOpen && term === "" ? (
                     <button
                         onClick={() => setSearchInputOpen(!searchInputOpen)}
                         className='p-2 rounded-full hover:bg-indigo-900/10'
@@ -43,7 +28,7 @@ const Search = () => {
                     </button>
                 ) : (
                     <button
-                        onClick={() => handleSearch()}
+                        onClick={() => setSearchInputOpen(!searchInputOpen)}
                         className='p-2 rounded-full hover:bg-teal-900/10'
                     >
                         <HiOutlineSearch className='text-2xl text-zinc-600' />

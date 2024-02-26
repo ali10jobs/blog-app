@@ -1,35 +1,46 @@
+"use client"
+import { useState, useEffect } from "react"
+import Pagination from "./Pagination"
+import IndexPage from "./IndexPage"
+import Link from "next/link"
+
+const readTime = () => Math.floor(Math.random() * (19 - 2 + 1)) + 2
+
 const Posts = ({ items }) => {
-    const filteredItems = items.length && items.slice(0, 10)
+    const itemsPerPage = 10
+    const [currentPage, setCurrentPage] = useState(1)
+    const [pageItems, setPageItems] = useState([])
+    const totalPages =
+        items.length % itemsPerPage == 0
+            ? items.length / itemsPerPage
+            : items.length / itemsPerPage + 1
+
+    const onPageChange = (targetPage) => {
+        setCurrentPage(targetPage)
+        fetchPageItems()
+    }
+
+    const fetchPageItems = () => {
+        const from = (currentPage - 1) * itemsPerPage
+        const to = currentPage * itemsPerPage - 1
+        setPageItems(items.slice(from, to))
+    }
+
+    useEffect(() => {
+        fetchPageItems()
+    }, [])
+
     return (
-        <div className='flex items-center justify-center'>
-            {items.length && (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Image</th>
-                            <th>Title</th>
-                            <th>Content</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {items.length &&
-                            items.map((item) => (
-                                <tr key={item.id}>
-                                    <td>{item.id}</td>
-                                    <td className='max-w-20 max-h-20'>
-                                        <img src={item.photo} />
-                                    </td>
-                                    <td className='max-w-md truncate'>
-                                        {item.title}
-                                    </td>
-                                    <td className='max-w-md truncate'>
-                                        {item.content}
-                                    </td>
-                                </tr>
-                            ))}
-                    </tbody>
-                </table>
+        <div className=''>
+            {pageItems.length && (
+                <div className='w-full flex flex-col items-center justify-center'>
+                    <IndexPage pageItems={pageItems} />
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={onPageChange}
+                    />
+                </div>
             )}
         </div>
     )
