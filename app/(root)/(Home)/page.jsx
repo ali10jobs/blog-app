@@ -72,9 +72,9 @@ const page = () => {
                     <section className='mt-20'>
                         <OurTeam />
                     </section>
-                    {/* <section className='mt-20'>
+                    <section className='mt-20'>
                         <Faq />
-                    </section> */}
+                    </section>
                 </>
             )}
         </div>

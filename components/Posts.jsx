@@ -31,7 +31,7 @@ const Posts = ({ items }) => {
     return (
         <div className=''>
             {pageItems.length && (
-                <div className='w-full flex flex-col items-center justify-center'>
+                <div className='w-full bg-zinc-50 dark:bg-zinc-950 flex flex-col items-center justify-center'>
                     <IndexPage pageItems={pageItems} />
                     <Pagination
                         currentPage={currentPage}

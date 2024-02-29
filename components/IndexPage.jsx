@@ -4,9 +4,9 @@ const IndexPage = ({ pageItems }) => {
     return (
         <>
             {pageItems.length && (
-                <div className='relative mt-10 bg-zinc-100 rounded-2xl dark:bg-zinc-950 px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28'>
+                <div className='relative mt-10 rounded-2xl px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28'>
                     <div className='hidden sm:absolute inset-0'>
-                        <div className='h-1/3 bg-white dark:bg-zinc-950 sm:h-2/3' />
+                        <div className='h-1/3 sm:h-2/3' />
                     </div>
                     <div className='relative mx-auto max-w-7xl'>
                         <div className='text-center'>
@@ -23,7 +23,7 @@ const IndexPage = ({ pageItems }) => {
                             {pageItems.map((item) => (
                                 <div
                                     key={item.id}
-                                    className='my-8 flex flex-col overflow-hidden rounded-3xl border dark:border-none border-zinc-100 hover:shadow-lg dark:hover:shadow-zinc-900/80 transition-all duration-200'
+                                    className='my-8 flex flex-col overflow-hidden rounded-3xl border dark:border-none border-zinc-200 hover:shadow-lg dark:hover:shadow-zinc-900/80 transition-all duration-200'
                                 >
                                     <div className='flex-shrink-0'>
                                         <img
@@ -32,7 +32,7 @@ const IndexPage = ({ pageItems }) => {
                                             alt={item.tags[0]}
                                         />
                                     </div>
-                                    <div className='flex flex-1 flex-col justify-between bg-white dark:bg-zinc-900/25 p-6'>
+                                    <div className='flex flex-1 flex-col justify-between bg-white dark:bg-zinc-900/35 p-6'>
                                         <div className='flex-1'>
                                             {/* <ul className='flex items-center space-x-2'>
                                                 {item.tags.map((tag, index) => (
