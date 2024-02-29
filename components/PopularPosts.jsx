@@ -61,7 +61,6 @@ import Link from "next/link"
 
 const PopularPosts = () => {
     const [posts, setPosts] = useState([])
-    const [popularPosts, setPopularPosts] = useState([])
 
     const fetchPopularPosts = async () => {
         let res = await fetch("/feeds.json")
@@ -74,8 +73,6 @@ const PopularPosts = () => {
         })
         setPosts(data.slice(0, 3))
     }
-
-    const readTime = () => Math.floor(Math.random() * (19 - 2 + 1)) + 2
 
     useEffect(() => {
         fetchPopularPosts()
@@ -162,7 +159,8 @@ const PopularPosts = () => {
                                                 &middot;
                                             </span>
                                             <span>
-                                                {readTime() + " "}minutes read
+                                                {post.readTime + " "}minutes
+                                                read
                                             </span>
                                         </div>
                                     </div>

@@ -1,8 +1,6 @@
 import Link from "next/link"
 
 const IndexPage = ({ pageItems }) => {
-    const readTime = () => Math.floor(Math.random() * (19 - 2 + 1)) + 2
-
     return (
         <>
             {pageItems.length && (
@@ -93,7 +91,7 @@ const IndexPage = ({ pageItems }) => {
                                                         &middot;
                                                     </span>
                                                     <span>
-                                                        {readTime() + " "}
+                                                        {item.readTime + " "}
                                                         minutes read
                                                     </span>
                                                 </div>

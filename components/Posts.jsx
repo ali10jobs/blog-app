@@ -4,8 +4,6 @@ import Pagination from "./Pagination"
 import IndexPage from "./IndexPage"
 import Link from "next/link"
 
-const readTime = () => Math.floor(Math.random() * (19 - 2 + 1)) + 2
-
 const Posts = ({ items }) => {
     const itemsPerPage = 10
     const [currentPage, setCurrentPage] = useState(1)
